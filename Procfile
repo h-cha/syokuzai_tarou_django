@@ -1,1 +1,1 @@
-web: gunicorn syokuzai_tarou.wsgi --log-file -
+web: gunicorn syokuzaitarou.wsgi --log-file -
