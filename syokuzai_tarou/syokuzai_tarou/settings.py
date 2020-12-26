@@ -137,7 +137,7 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'refrigerator'
 # 下は追加するかどうか検討する
 LOGOUT_REDIRECT_URL = 'login'
-
+LANGUAGE_CODE = 'ja'
 
 try:
     from .local_settings import *
