@@ -131,7 +131,7 @@ USE_TZ = True
 
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
