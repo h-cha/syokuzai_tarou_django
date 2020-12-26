@@ -251,3 +251,6 @@ def food_delete(request):
     }
     
     return render(request, 'refrigerator/food_delete.html',params)
+
+def test(request):
+    return render(request, 'refrigerator/test.html')
