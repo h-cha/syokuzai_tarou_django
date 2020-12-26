@@ -158,29 +158,3 @@ def recipe(request):
         #'text' : url,
     }
     return render(request, 'recipe/recipe.html',params)
-
-#@login_required
-#def sample(request):
-    #param1 = request.GET.get('param1')
-    #param2 = request.GET.get('param2')
-    #param1 = param1.unquote(param1)
-    #if param1:
-        #param1 = [str(x) for x in param1]
-    #params = {
-     #   'text' : param1,
-        #'text2' : param2,
-    #}
-    #return render(request, 'recipe/sample.html',params)
-    #msg = request.GET['msg']
-    #return HttpResponse('you typed : "'+ msg + '".')
-
-#@login_required
-#redirect先のurl決定(recipe_select)
-#def sample2(request):
- #   if (request.method == 'POST'):
-  #      msg = urllib.parse.quote('じゃがいも たまご')
-   #     url = '/sample/?param1='+ msg
-    #    return redirect(url)
-        #return redirect(to='/recipe')
-     
-    #return render(request, 'recipe/sample2.html')

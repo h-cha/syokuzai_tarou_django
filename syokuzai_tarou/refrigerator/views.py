@@ -251,30 +251,3 @@ def food_delete(request):
     }
     
     return render(request, 'refrigerator/food_delete.html',params)
-
-
-
-
-def calender(request):
-    params = {
-        'form_food' : FoodForm(),
-        'form_foodset' : FoodSetRegisterForm(),
-    }
-    if request.method == 'POST':
-        obj = FoodSet()
-        obj2 = Food()
-        foodset_form = FoodSetRegisterForm(request.POST, instance=obj)
-        food_form = FoodForm(request.POST, instance=obj2)
-        if food_form.is_valid():
-            food_form.save()
-
-        foodID_list = Food.objects.filter(foodName=request.POST.get('foodName')).values_list('id', flat=True)
-        food_id = foodID_list[0]
-        food = Food.objects.get(id=food_id)
-
-        foodset_field = FoodSet.objects.create(food=food, limitRegister=request.POST.get('limitRegister'), foodGram=request.POST.get('foodGram'), volume=request.POST.get('volume'))
-        foodset_field.save()
-        
-        refrigerator = Refrigerator.objects.create(user=request.user,foodset=foodset_field)
-        refrigerator.save()
-    return render(request, 'refrigerator/calender.html',params)
