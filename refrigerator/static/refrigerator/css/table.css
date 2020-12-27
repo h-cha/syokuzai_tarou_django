@@ -215,46 +215,6 @@ table tr:nth-child(even) td {
 }
 
 
-/*thead th:nth-child(1) {
-    width: 30%;
-  }
-  
-  thead th:nth-child(2) {
-    width: 20%;
-  }
-  
-  thead th:nth-child(3) {
-    width: 15%;
-  }
-  
-  thead th:nth-child(4) {
-    width: 35%;
-  }
-  /*
-  th, td {
-    padding: 20px;
-  }
-*/
-
-
-/*th{
-    padding: 20px;
-  }
-  td{
-    padding: 20px;
-    background:  #b5d8a7;
-    border: 1px solid #ddd;
-  }
-
-  thead, tfoot {
-  
-    background: url(leopardskin.jpg);
-    color: white;
-    text-shadow: 1px 1px 1px black;
-
-  }
-  */
-
 thead th,
 tfoot th,
 tfoot td {
