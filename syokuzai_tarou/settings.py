@@ -136,7 +136,7 @@ STATIC_URL = '/static/'
 #     os.path.join(BASE_DIR, 'static'),
 # )
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static') #追加
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
