@@ -17,8 +17,8 @@
             <form method="post">
                 {% csrf_token %}
                
-                            {{ form.as_table}} 
-                       
+                            {{ form.username.label }} :
+                           {{ form.username }}
                       </form>
 
                 
