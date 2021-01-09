@@ -29,25 +29,13 @@ def recipe_select(request):
         for item in checks_value:
             recipe_data = Refrigerator.objects.get(id=item)
             recipe.append(recipe_data.foodset.food.foodName)
-        #parameters = zipped(recipe_id,recipe_name)
-        #parameters = urlencode({'param1': 'recipe_data', 'param2': 123})
          # URLにパラメータを付与する
         recipe = {'param1':recipe}
         recipe = urllib.parse.urlencode(recipe)
         redirect_url = reverse('recipe')
         url = f'{redirect_url}?{recipe}'
         return redirect(url)
-        #return redirect(to='/recipe')
-        #response = redirect('sample')
-        #param1 = request.GET.urlencode()
-        #response['location'] += '?'+param1
-        #return response
-        #recipe = {'param1':recipe[0],'param2':recipe[1]}
-        #recipe = urllib.parse.urlencode(recipe)
-        #redirect = HttpResponseRedirect(reverse('sample'))
-        #redirect['Location'] += '&'.join(['recipe={}'.format(x) for x in recipe])
-        #return redirect
-            
+
     #GETアクセス時の処理
     else:
         #フォームの用意
@@ -81,26 +69,21 @@ def recipe_select(request):
 
 @login_required
 def recipe(request):
-    #get_params = request.GET.urlencode()
     param1 = request.GET.get('param1') # param1の値を取得
     if (request.method == 'POST'):
         return redirect(to='/recipe/recipe_select')
     else:
-        #param1 = param1.replace('')
         param1 = param1.replace('[','')
         param1 = param1.replace(']','')
         param1 = param1.replace(',','')
         param1 = param1.replace('\'','')
         param = urllib.parse.quote(param1)
         url = 'https://erecipe.woman.excite.co.jp/search/'+param
-        #url = url.replace('%27','%20')
         #スクレイピング
         response = urllib.request.urlopen(url)
         html = response.read()
         soup = BeautifulSoup(html)
 
-        #image_html = requests.get(url).text
-        #image_soup =  BeautifulSoup(image_html)
         # 全てのaタグを抽出
         recipe = soup.find_all('a' ,class_='recipename')
     
@@ -110,26 +93,13 @@ def recipe(request):
             url_link = 'https://erecipe.woman.excite.co.jp' + link.get('href')
             links.append(url_link)
             recipe_names.append(link.get_text())
-        #link_list = zip(recipe_names,links)
 
         #全てのdiv class＝"inner posrltv"を抽出
-        #for name,item in link_list:
         recipe_image = []
         images = soup.find_all('img', class_='thmb fl lazy')
         for image in images:
             recipe_image.append(image.get('data-src'))
-        #image = re.match(r'https?://[\w!?/+\-_~=;.,*&@#$%()\'[\]]+jpeg',images)
-
-        #image = image_soup.find('div', id='main').find('img').get('data-src')
-        #for item in image:
-        #   images.append(item)
-        #images = image_soup.find_all('div', id='main')
-        #recipe_image = []
-
-        #recipe_food = []
-        #foods = soup.find_all('strong',class_='tit fl bigger mB10')
         link_list = zip(recipe_names,links,recipe_image)
-    
 
     params = {
         'title' : 'レシピ検索結果表示',
@@ -154,7 +124,5 @@ def recipe(request):
         'name' : recipe_names,
         'link_list' : link_list,
         'param1' : param1,
-        #'image' : image,
-        #'text' : url,
     }
     return render(request, 'recipe/recipe.html',params)

@@ -1,6 +1,7 @@
 {% load static %}
 <!doctype html>
 <html lang="ja">
+
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="{% static 'refrigerator/css/table.css' %}" />
@@ -12,19 +13,26 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.1.0/introjs.min.css" rel="stylesheet" type="text/css">
     <title>{{title}}</title>
 </head>
+
 <body>
     <header class="header">
-        <h1><a href="{% url 'refrigerator' %}"><p class="logo" alt="食材残さないよ太郎"></a></h1>
+        <h1>
+            <a href="{% url 'refrigerator' %}">
+                <p class="logo" alt="食材残さないよ太郎">
+            </a>
+        </h1>
         <div class="outer-menu">
             <input class="checkbox-toggle" type="checkbox" />
             <div class="hamburger">
-            <div></div>
+                <div></div>
             </div>
             <div class="menu">
                 <div>
                     <div>
                         <ul>
-                            <hu>Hey！<font color="#eb5a09">{{ user.username }}</font></hu>
+                            <hu>Hey！
+                                <font color="#eb5a09">{{ user.username }}</font>
+                            </hu>
                             <li><a href="{% url 'logout' %}">ログアウト</a></li>
                             <li><a href="{% url 'password_change' %}">パスワード変更</a></li>
                         </ul>
@@ -40,31 +48,33 @@
                 <li class="nav-item"> <a href="{% url goto_search %}">{{ goto_search_text }}</a></li>
                 <li class="nav-item"><a href="{% url goto_recipe_select %}">{{ goto_recipe_select_text }}</a></li>
                 <li class="nav-item"><a href="{% url goto_delete %}">{{ goto_delete_text }}</a></li>
-               
+
             </ul>
         </nav>
-</header>
-<div class="wrapper">
-   <main class="main">
-    <a>食材登録変更ページ</a></br>
-    <h2>食品名　：{{ foodset.food }} ({{ foodset.str_limitRegister }})</h2>
-    <form action="{% url 'food_change'  id  %}" method="post">
-        {% csrf_token %}
-        <tr>
-            <h2 data-intro="変更後の値を入力" data-step="1">数量　：{{foodset.foodGram}}ーー＞{{ form }}{{foodset.volume}}</h2></br>
-        </tr>
-        <input class="decorated-btn" type="submit" value="食材変更" data-intro="このボタンを押して変更完了" data-step="2">
-    </form>
-    <input class="intro-btn" type="button" value="この機能の使い方" onclick="buttonClick()">
+    </header>
+    <div class="wrapper">
+        <main class="main">
+            <a>食材登録変更ページ</a></br>
+            <h2>食品名　：{{ foodset.food }} ({{ foodset.str_limitRegister }})</h2>
+            <form action="{% url 'food_change'  id  %}" method="post">
+                {% csrf_token %}
+                <tr>
+                    <h2 data-intro="変更後の値を入力" data-step="1">数量　：{{foodset.foodGram}}ーー＞{{ form }}{{foodset.volume}}</h2>
+                    </br>
+                </tr>
+                <input class="decorated-btn" type="submit" value="食材変更" data-intro="このボタンを押して変更完了" data-step="2">
+            </form>
+            <input class="intro-btn" type="button" value="この機能の使い方" onclick="buttonClick()">
             <script type="text/javascript">
-                function buttonClick(){
+                function buttonClick() {
                     introJs().start();
                 }
             </script>
-   </main>
-</div>
-<footer class="footer">
-     <p class="copyright">Copyright @ 2020 syokuzai_tarou</p>
-</footer>
+        </main>
+    </div>
+    <footer class="footer">
+        <p class="copyright">Copyright @ 2020 syokuzai_tarou</p>
+    </footer>
 </body>
+
 </html>

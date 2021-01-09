@@ -16,17 +16,23 @@
 
 <body>
     <header class="header">
-        <h1><a href="{% url 'refrigerator' %}"><p class="logo" alt="食材残さないよ太郎"></a></h1>
+        <h1>
+            <a href="{% url 'refrigerator' %}">
+                <p class="logo" alt="食材残さないよ太郎">
+            </a>
+        </h1>
         <div class="outer-menu">
             <input class="checkbox-toggle" type="checkbox" />
             <div class="hamburger">
-            <div></div>
+                <div></div>
             </div>
             <div class="menu">
                 <div>
                     <div>
                         <ul>
-                            <hu>Hey！<font color="#eb5a09">{{ user.username }}</font></hu>
+                            <hu>Hey！
+                                <font color="#eb5a09">{{ user.username }}</font>
+                            </hu>
                             <li><a href="{% url 'logout' %}">ログアウト</a></li>
                             <li><a href="{% url 'password_change' %}">パスワード変更</a></li>
                         </ul>
@@ -46,60 +52,51 @@
         </nav>
     </header>
     <div class="wrapper">
-       <main class="main">
-        <a>食材登録変更を選択するページ</a>
+        <main class="main">
+            <h3>
+                <p align="left">数量を変更したい食材を１つ選択してください。</p>
+            </h3>
             {% for message in messages %}
-                    <li {% if message.tags %} class="{{ message.tags }}">
-                        {% endif %}
-                        {{ message }}
-                    </li>
-                    {% endfor %}
+            <li {% if message.tags %} class="{{ message.tags }}">
+                {% endif %} {{ message }}
+            </li>
+            {% endfor %}
             <form action="{% url 'food_change_select'   %}" method="post">
                 {% csrf_token %}
                 <div class="scroll-table" data-intro="数量変更したい食材を選択して" data-step="1">
-                    <table class="osare-table col5t">  
-                    <tr>
-                        <thead>
-                            {% for h in header %}
-                            <th class="fixed01">{{h}}</th>
-                            {% endfor %}
-                        </thead>
-                    </tr>
-                    {% for item,data in foodlist %}
-                            <tr>
-                                <td>{{item}}</td>
-                                <td>{{ data.foodset.foodGram }} [{{ data.foodset.volume }}]</td>
-                                <td>{{data.foodset.str_limitRegister}}</td>
-                            </tr>
-                    {% endfor %}
-                    
-                    <input type="hidden"  value="__select_form__">
-                </table>
-            </div>
+                    <table class="osare-table col5t">
+                        <tr>
+                            <thead>
+                                {% for h in header %}
+                                <th class="fixed01">{{h}}</th>
+                                {% endfor %}
+                            </thead>
+                        </tr>
+                        {% for item,data in foodlist %}
+                        <tr>
+                            <td>{{item}}</td>
+                            <td>{{ data.foodset.foodGram }} [{{ data.foodset.volume }}]</td>
+                            <td>{{data.foodset.str_limitRegister}}</td>
+                        </tr>
+                        {% endfor %}
+
+                        <input type="hidden" value="__select_form__">
+                    </table>
+                </div>
                 <input class="decorated-btn" type="submit" value="食材変更" data-intro="ボタンを押そう" data-step="2">
             </form>
             <input class="intro-btn" type="button" value="この機能の使い方" onclick="buttonClick()">
-            
+
             <script type="text/javascript">
-                function buttonClick(){
+                function buttonClick() {
                     introJs().start();
                 }
             </script>
-            
-            <!--ページ遷移
-            <script type="text/javascript">
-                function buttonClick(){
-                    introJs().start();
-                    introJs().start().oncomplete(function() {
-                            window.location.href = 'food_register';
-                        });
-                    }
-            </script>
-            -->
-    </main>
+
+        </main>
     </div>
     <footer class="footer">
-         <p class="copyright">Copyright @ 2020 syokuzai_tarou</p>
+        <p class="copyright">Copyright @ 2020 syokuzai_tarou</p>
     </footer>
 </body>
 
