@@ -1,6 +1,7 @@
 {% load static %}
 <!doctype html>
 <html lang="ja">
+
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="{% static 'refrigerator/css/table.css' %}" />
@@ -9,19 +10,26 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <title>{{ title }}</title>
 </head>
+
 <body>
     <header class="header">
-        <h1><a href="{% url 'refrigerator' %}"><p class="logo" alt="食材残さないよ太郎"></a></h1>
+        <h1>
+            <a href="{% url 'refrigerator' %}">
+                <p class="logo" alt="食材残さないよ太郎">
+            </a>
+        </h1>
         <div class="outer-menu">
             <input class="checkbox-toggle" type="checkbox" />
             <div class="hamburger">
-            <div></div>
+                <div></div>
             </div>
             <div class="menu">
                 <div>
                     <div>
                         <ul>
-                            <hu>Hey！<font color="#eb5a09">{{ user.username }}</font></hu>
+                            <hu>Hey！
+                                <font color="#eb5a09">{{ user.username }}</font>
+                            </hu>
                             <li><a href="{% url 'logout' %}">ログアウト</a></li>
                             <li><a href="{% url 'password_change' %}">パスワード変更</a></li>
                         </ul>
@@ -37,40 +45,42 @@
                 <li class="nav-item"> <a href="{% url goto_search %}">{{ goto_search_text }}</a></li>
                 <li class="nav-item active"><a href="{% url goto_recipe_select %}">{{ goto_recipe_select_text }}</a></li>
                 <li class="nav-item"><a href="{% url goto_delete %}">{{ goto_delete_text }}</a></li>
-               
+
             </ul>
         </nav>
     </header>
     <div class="wrapper">
-       <main class="main">
-        <a>レシピ表示ページ</a>
-        <form  method="post" >
-            {%  csrf_token %}
-            <div class="scroll-table">
-                <table class="osare-table col5t">  
-                <tr>
-                    <thead>
-                        {% for h in header %}
-                        <th class="fixed01">{{h}}</th>
+        <main class="main">
+            <form method="post">
+                <h3>
+                    <p align="left">使いたい食材を複数選択可能です。</p>
+                </h3>
+                {% csrf_token %}
+                <div class="scroll-table">
+                    <table class="osare-table col5t">
+                        <tr>
+                            <thead>
+                                {% for h in header %}
+                                <th class="fixed01">{{h}}</th>
+                                {% endfor %}
+                            </thead>
+                        </tr>
+                        <input type="hidden" value="__foods_form__"> {% for item,data in foodlist %}
+                        <tr>
+                            <td>{{item}}</td>
+                            <td>{{ data.foodset.foodGram }} [{{ data.foodset.volume }}]</td>
+                            <td>{{data.foodset.str_limitRegister}}</td>
+                        </tr>
                         {% endfor %}
-                    </thead>
-                </tr>
-                <input type="hidden"  value="__foods_form__">
-                {% for item,data in foodlist %}
-                <tr>
-                    <td>{{item}}</td>
-                    <td>{{ data.foodset.foodGram }} [{{ data.foodset.volume }}]</td>
-                    <td>{{data.foodset.str_limitRegister}}</td>
-                </tr>
-            {% endfor %}
-            </table>
-            </div>
-            <input class="decorated-btn" type="submit" value="レシピ検索">
-        </form>
-    </main>
+                    </table>
+                </div>
+                <input class="decorated-btn" type="submit" value="レシピ検索">
+            </form>
+        </main>
     </div>
     <footer class="footer">
-         <p class="copyright">Copyright @ 2020 syokuzai_tarou</p>
+        <p class="copyright">Copyright @ 2020 syokuzai_tarou</p>
     </footer>
 </body>
+
 </html>

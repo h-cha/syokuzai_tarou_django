@@ -4,20 +4,17 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>LOGIN</title>
+    <title>ログイン</title>
     <link rel="stylesheet" type="text/css" href="{% static 'refrigerator/css/table.css' %}" />
     <link rel="stylesheet" href="{% static 'refrigerator/css/hamburger.css' %}" />
     <link rel="stylesheet" href="{% static 'refrigerator/css/deco_btn.css' %}" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-
 <body>
     <header class="header">
         <h1 class="logo">食材残さないよ太郎</h1>
     </header>
-
-
     <div class="wrapper">
         <main class="main">
             <h1>ログイン</h1>
@@ -26,28 +23,36 @@
                 <div class="divTable">
                     <div class="divTableBody">
                         <div class="divTableRow">
-                            <div class="divTableCell"><h4>{{ form.username.label }} :</h4></div>
+                            <div class="divTableCell">
+                                <h4>{{ form.username.label }} :</h4>
+                            </div>
                             <div class="divTableCell">{{ form.username }}</div>
                         </div>
                         <div class="divTableRow">
-                            <div class="divTableCell"><h4>{{ form.password.label }} :</h4></div>
+                            <div class="divTableCell">
+                                <h4>{{ form.password.label }} :</h4>
+                            </div>
                             <div class="divTableCell">{{ form.password }}</div>
                         </div>
-                        
+
                         <div class="divTableRow">
                             <div class="divTableCell"></div>
-                            <div class="divTableCell"><p align="right"><button class="decorated-btn" type="submit">ログイン</button></p></div>
+                            <div class="divTableCell">
+                                <p align="right"><button class="decorated-btn" type="submit">ログイン</button></p>
+                            </div>
                         </div>
                         <div class="divTableRow">
                             <div class="divTableCell"></div>
-                            <div class="divTableCell"><p align="right"><button class="decorated-btn"><a href="{% url 'signup' %}">新規作成</a></button></p></div>
+                            <div class="divTableCell">
+                                <p align="right"><button class="decorated-btn"><a href="{% url 'signup' %}">新規作成</a></button></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </form>
-            
-        </div>
-        </main>
+
+    </div>
+    </main>
     </div>
     <footer class="footer">
         <p class="copyright">Copyright @ 2020 syokuzai_tarou</p>
